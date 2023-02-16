@@ -1,0 +1,161 @@
+
+#######################
+# List Comprehensions
+#######################
+
+# Birden fazla satırdaki kod işlemlerini tek bir satırda yazmamızı sağlayan ifadelerdir.
+
+salaries = [1000, 2000, 3000, 4000, 5000]
+
+def new_salary(x):
+    return x * 0.2 + x
+
+for salary in salaries:
+    print(new_salary(salary))
+
+
+null_list = []
+
+for salary in salaries:
+    null_list.append(new_salary(salary))
+
+for salary in salaries:
+    if salary > 3000:
+        null_list.append(new_salary(salary))
+    else:
+        null_list.append(new_salary(salary * 2))
+
+null_list
+
+
+[new_salary(salary * 2) if salary < 3000 else new_salary(salary) for salary in salaries]
+
+# [ fonksiyon yazılır ardından for döngüsü yazılır ardından tek if bloğu yazılır. Eğer eğer else kullanımı da varsa if,
+# else solda for sağda yazılır.
+
+
+
+[salary * 2 for salary in salaries]
+
+[salary * 2 for salary in salaries if salary < 3000]
+
+[salary * 2 if salary < 3000 else salary * 0 for salary in salaries]
+
+[new_salary(salary * 2) if salary < 3000 else salary * 0 for salary in salaries]
+
+[new_salary(salary * 2) if salary < 3000 else new_salary(salary) for salary in salaries]
+
+
+students
+
+students_no = ["John", "Mark"]
+
+[student.lower() if student in students_no else student.upper() for student in students]
+
+
+######################
+# Dict Comprehensions
+######################
+
+# Sözlük comprehensions' lar tek bir satırda birden fazla formatı kullanmamıza ve birden fazla satır kullanma işlemini
+# kolaylaştırırlar.
+
+dictionary = {"a": 1,
+              "b": 2,
+              "c": 3,
+              "d": 4}
+
+dictionary.keys()
+dictionary.values()
+dictionary.items()
+
+{k: v ** 2 for (k, v) in dictionary.items()}
+
+{k.upper(): v for (k, v) in dictionary.items()}
+
+{k.upper(): v * 2 for (k, v) in dictionary.items()}
+
+
+# Mülakat Sorusu: Çift sayıların karesi alınarak bir sözlüğe eklenecek key değerleri sabit kalacak, value değerleri değişecek.
+
+numbers = range(10)
+new_dict = {}
+
+for n in numbers:
+    if n % 2 == 0:
+        new_dict[n] = n ** 2
+
+{n: n ** 2 for n in numbers if n % 2 == 0}
+
+
+
+
+######              UYGULAMALAR                   ########
+
+# UYGULAMA - 1  :  Bir veri setindeki değişken isimlerini değiştirmek
+
+import seaborn as sns                                   # seaborn kütüphanesini sns olarak import ediyoruz.
+df = sns.load_dataset("car_crashes")                    # df değişkenine ilgili kütüphanenin veri setini atarak bir
+                                                        # dataframe oluşturuyoruz.
+
+df.columns                                           # dataframe' in değişkenlerine ulaşıyoruz
+
+for col in df.columns:
+    print(col.upper())
+
+A = []
+
+for col in df.columns:
+    A.append(col.upper())
+
+df.columns = A
+
+# Bu işlemi list comprehension ile yapalım.
+
+df = sns.load_dataset("car_crashes")
+
+df.columns = {col.upper() for col in df.columns}
+
+
+# UYGULAMA - 2 : İsminde 'INS' olan değişkenlerin başına FLAG, diğerlerine NO_FLAG eklemek istiyoruz.
+
+[col for col in df.columns if 'INS' in col]
+
+["FLAG_" + col for col in df.columns if 'INS' in col]
+
+["FLAG_" + col if 'INS' in col else "NO_FLAG_" + col for col in df.columns]
+
+
+
+# UYGULAMA - 3 : Amaç key' i string, value' su aşağıdaki gibi bir liste olan sözlük oluşturmak.
+
+# { 'total': ['mean', 'min', 'max', 'var'],
+# 'speeding': ['mean', 'min', 'max', 'var'],
+# 'alcohol': ['mean', 'min', 'max', 'var'],
+# 'not_distracted': ['mean', 'min', 'max', 'var'],
+# 'no_previous': ['mean', 'min', 'max', 'var'],
+# 'ins_premium': ['mean', 'min', 'max', 'var'],
+# 'ins_losses': ['mean', 'min', 'max', 'var']}
+
+df = sns.load_dataset("car_crashes")
+df.columns
+
+num_columns = [col for col in df.columns if df[col].dtype != "O"]
+
+# kategorik(non objejct) olmayan değişkenleri yazdırıyıyoruz.
+
+soz = {}                  # boş bir sözlük oluşturduk.
+
+agg_list = ["mean", "min", "max", "sum"]
+
+for col in num_columns:
+    soz[col] = agg_list
+
+# dict comprehension ile yapalım
+
+{col: agg_list for col in num_columns}
+new_dict = {col: agg_list for col in num_columns}
+
+
+
+
