@@ -1,0 +1,293 @@
+
+###################
+# Sayılar
+###############
+
+# Sayılar integer, float ve complex sayıları içeren bir veri tipidir.
+
+a = 5
+b = 10.5
+a * 3
+a / 7
+
+a * b / 10              # Görüldüğü üzere toplama, çıkarma, çarpma ve bölme gibi matematiksel işlemler
+                        # kolaylıkla yapılabiliyor.
+
+a ** 2                  # Üs alma işlemi a ** b şeklinde yapılabilir.
+
+
+float(a)                # Veri tiplerini değiştirebiliriz.
+int(b)
+
+###################
+# Stringler
+###################
+
+# Metin, txt formatındaki verileri tutmak için kullanılan veri tipidir.
+
+print("sezer")          # Tek veya çift tırnaklar içerisine karakterler girilerek string türünde veriler oluşturulabilir.
+print('sezer')
+
+name = "sezer"
+name
+
+
+# Birden fazla satırı karakter dizisi olarak kullanmak için 3 adet çift tırnak kullanılabilir.
+"""
+        İsim: Sezer Küçükcan
+        Bölüm: Elektrik - Elektronik Mühendisliği
+        Sınıf: 4.Sınıf 
+
+"""
+
+# Karakter dizilerinin elemanlarına erişmek için [indeks] kullanılır.
+
+name[0]                 # Python'da indeksleme işlemi 0' dan başlar.
+name[3]
+
+# Karakter dizilerinin belirli karakterlerine ulaşmak için (birden fazla) 'Slice' işlemi uygulanır.
+
+name_2 = "sezer kucukcan"
+name_2[0:2]
+name_2[:4]
+name_2[::2]
+name_2[::-1]
+
+# Stringin içerisinde karakter sorgulamak için "in" komutu kullanılır.
+
+
+long_str = """
+        İsim: Sezer Küçükcan
+        Bölüm: Elektrik - Elektronik Mühendisliği
+        Sınıf: 4.Sınıf 
+
+"""
+
+"sezer" in long_str
+"Sezer" in long_str
+
+
+####  String metotları
+
+# dir(veri tipi) ile ilgili veri tipine ait kulanılabilecek metotları görebiliriz.
+
+dir(str)
+
+# len() fonksiyonu boyut bilgisini verir.
+
+len(name)
+
+name_3 = "John"
+type(name_3)
+
+type(len)                   # len() ifadesinin tipinin built-in-function olduğu görülmektedir.
+
+
+# Not: Eğer bir fonksiyon class yapısı içerisinde tanımlanmışsa metottur, tanımlanmamışsa fonksiyondur.
+# Not: Bir fonksiyonu tüm veri tiplerine uyarlayabiliyorken metotlar sınıflarına(veri tipine) özgüdür. Dolayısıyla fonk-
+# siyonların metotlara göre daha geniş bir kullanıma sahip olduğu söylenebilir.
+
+# upper(), bir stringin tüm karakterlerini büyütmeye yarayan metottur.
+# lower(), bir stringin tüm karakterlerini küçültmeye yarayan metottur.
+
+"miuul".upper()
+"MIUUL".lower()
+
+type(upper())               # upper() metodu class yapısı içerisinde tanımlandığından tip bilgisini arattığımızda hata verir.
+
+# replace(), bir stringin karakterlerini değiştirmek için kullandığımız metotdur.
+
+hi = " Hello ai era "
+hi.replace("l", "p")
+
+
+# split(), stringi bölmek için kullanılan metotdur.
+
+"Hello ai era".split()      # karakter girilmezse boşluğa göre ayırır karakter girilirse karaktere göre ayırır ve listeler.
+"Hello ai era".split("o")
+
+# strip(), kırpma metodudur. Argüman girilmemişse boşluğa göre kırpar argüman girilmişse argümana göre kırpar.
+
+"ofofo".strip("o")
+"sezer kucukcan".strip("se")
+"sezer kucukcan".strip("can")
+
+# capitalize(), bir stringin yalnızca ilk harfini büyütmek için kullanılan bir metotdur.
+
+"sEZEr KuCUkcan".capitalize()               # Görüldüğü üzere ilk karakteri büyüttü diğerlerini küçülttü.
+
+
+###################
+# Listeler
+###################
+
+# Listeler köşeli parantez içerisine veriler girilerek oluşturulur. Veriler birbirinden virgülle ayrılır.
+
+
+notes = [1, 2, 3, 4]
+type(notes)
+names = ["a", "b", "c", "d"]
+not_nam = [1, 2, 3, "a", "b", True, [1, 2, 3]]
+not_nam[0]
+not_nam[5]
+not_nam[6]
+type(not_nam[5])
+type(not_nam[6])
+not_nam[6][1]
+
+notes[0]
+notes[0] = 99                   # Görüldüğü üzere bir listenin elemanlarını değiştirebiliriz.
+notes
+
+not_nam[0:4]
+
+
+#### Liste metodları
+
+# len(), built in fonksiyonudur ve boyut bilgisini verir.
+
+len(notes)
+len(not_nam)
+
+# append() metodu listelere eleman eklemek için kullanılır.
+
+notes
+
+notes.append(100)               # 100 değerini listenin sonuna ekler.
+
+notes
+
+# pop() metodu indekse göre eleman siler.
+
+notes.pop()                     # indeks verilmediğinde listenin sonundaki elemanı listeden siler.
+notes
+notes.pop(0)
+notes                           # 0. indeksteki elemanı listeden siler.
+
+# insert() metodu indekse göre listeye eleman ekler.
+
+notes.insert(2, 99)             # 2. indekse 99 değerini ekler.
+notes
+
+
+
+###################
+# Sözlük (dictionary)
+###################
+
+# Süslü parantez içerisine key ve value değerleri eklenerek oluşturulur ve bu elemanlar virgülle birbirinden ayrılır.
+# Listeler gibi elemanları değiştirilebilir ancak index bilgisi içermezler (sırasızdırlar)
+
+dictionary = {"REG": "Regression",
+              "LOG": "Logistic Regression",
+              "CART": "Classification and Regression"}
+
+
+dictionary["REG"]
+dictionary["CART"]
+
+dictionary = {"REG": ["RMSE", 10],
+              "LOG": ["MSE", 20],
+              "CART": ["SSE", 30]}
+
+dictionary["CART"][1]
+
+# key sorgulama
+
+"REG" in dictionary
+"YSA" in dictionary
+
+# value değiştirmek
+
+dictionary["REG"] = ["YSA", 10]
+dictionary
+
+# key' e göre value' ye erişmek için get() metodu kullanılabilir.
+
+dictionary.get("REG")
+
+# key' lere erişmek.
+
+dictionary.keys()
+
+# value' lere erişmek.
+
+dictionary.values()
+
+# key ve value' lere tuple formunda erişmek.
+
+dictionary.items()
+
+# update({key: value}) ile key-value değeri değiştirilebilir veya sözlüğe ekleme yapılabilir.
+
+dictionary.update({"REG": 11})
+dictionary
+
+dictionary.update({"RF": 10})
+dictionary                  # Görüldüğü üzere eğer girilen key değeri sözlükte yoksa yeni bir key: value çifti olarak
+                            # sözlüğe ekler ekler.
+
+
+
+###################
+# Tuple (demet)
+###################
+
+# Tuple' lar liste ve sözlüklerin aksine değiştirilemez bir veri tipidir. İndekslenebilir.
+
+t = ("john", "mark", 1, 2)
+
+t[0]
+t[0:3]
+t[0] = 99                   # Herhangi bir indeksteki elemanı değiştirmek istediğimizde hata verecektir.
+
+t = list(t)                 # Tip değiştirilip ardından tuple elemanları değiştirilebilir.
+t[0] = 99
+t = tuple(t)
+t
+
+
+###################
+# Küme (set)
+###################
+
+# Kümeler de sözlükler gibi süslü parantez içerisine veriler girilerek oluşturulur ancak key value değerleri yoktur.
+# Küme elemanları sırasızdır.
+
+set_1 = set([1,3,5])
+set_2 = set([1,2,3])
+type(set_1)
+
+set_1[0]                        # Görüldüğü üzere indeks bilgisi içermezler.
+
+# İki kümenin farkı için difference() metodu kullanılır.
+
+dir(set)
+
+set_1.difference(set_2)
+set_2.difference(set_1)
+
+set_1 - set_2                   # Görüldüğü üzere metotlar yerine matematiksel operatörler de kullanılabilir.
+set_2 - set_1
+
+# İki kümenin birleşimi için union() metodu kullanılır.
+
+set_1.union(set_2)
+
+# İki kümenin kesişimi için intersection() metodu kullanılır.
+
+set_1.intersection(set_2)
+
+# İki kümenin kesişimi olup olmadığını kontrol etmek için isdisjoint() metodu kullanılır.
+
+set_1.isdisjoint(set_2)         # İki kümenin kesişimi olduğu için 'False' yanıtını verdi.
+
+# Alt küme sorgulaması için issubset() metodu kullanılır.
+
+set_1 = {7,8,9}
+set_2 = {5,6,7,8,9,10}
+set_1.issubset(set_2)
+
+# Bir kümenin başka bir kümeyi kapsayıp kapsamadığının sorgusu için issuperset() metodu kullanılır.
+
+set_2.issuperset(set_1)
