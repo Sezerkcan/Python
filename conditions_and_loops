@@ -1,0 +1,299 @@
+######################
+# Koşullar (Conditions)
+######################
+
+# Bir program yazımı esnasında akış kontrolü sağlayan ve programların belirli kurallara nasıl ilerleyiciğinin
+# programcılar tarafından gösterilmesini sağlayan ifadelerdir.
+
+# Koşullar mantıksal "True", "False" ifadeleriyle kontrol edilir. Koşulun sağlanması için "True" gerekirken koşulun sağ-
+# lanmadığı durumlar "False" olur.
+
+1 == 1
+
+1 == 2
+
+# if koşulu
+
+# if içerisindeki koşula göre altındaki işlemlerin gerçekleştirilip gerçekleştirilmeyeceğine karar verir. Koşul gerçek-
+# leşirse işlemler gerçekleşir, koşul gerçekleşmezse fonksiyonlar çalışmaz.
+
+if 1 == 1:                             # Burada 1 = 1 olduğundan koşul true' dur ve koşul gerçekleştiğinden if bloğu çalışır.
+    print("something")
+
+if 1 == 2:                              # Burada 1 = 2 yanlış olduğundan koşul false' dur ve koşul gerçekleşmediğinden
+    print("something")                  # if bloğu çalışmaz.
+
+number = 11
+if number == 10:
+    print("number is 10")
+
+number = 10
+
+def number_check(number):
+    if number == 10:
+        print("number is 10")
+
+number_check(12)
+number_check(10)
+
+# Eğer birden fazla koşulu kontrol etmek ve farklı işlemleri yaptırmak istersek "elif" ve "else" ifadelerini kullanabiliriz.
+
+def number_check(number):
+    if number == 10:
+        print("Number is equal to 10")
+    else:
+        print("Number is not 10")
+
+number_check(15)
+
+number_check(10)
+
+def number_check(number):
+    if number > 10:
+        print("Number is greater than 10")
+    elif number < 10:
+        print("Number is smaller than 10")
+    else:
+        print("Number is equal to 10")
+
+number_check(15)
+number_check(9.7)
+number_check(10)
+
+
+######################
+# Döngüler (Loops)
+######################
+
+
+# Kod içerisinde uzun bir listenin içerisindeki elemanlara erişmek gibi birbirini çok sayıda tekrar eden işlemi yapmak
+# gerekebilir. Bu durumlarda kod yazımını sadeleştirmek adına for döngüsünden yararlanılabilir. "for eleman in liste"
+# şeklinde bir yazımla bir liste içerisindeki elemanlara  sırasıyla erişebiliriz.
+
+Students = ["John", "Mark", "Venessa", "Mariam"]
+
+Students[0]
+Students[3]
+
+for student in Students:                # Bu şekilde indekslere tek tek erişmek yerine bir for döngüsüyle elemanları tek
+    print(student)                      # tek yazdırdık.
+
+for student in Students:
+    print(student.upper())
+
+
+salaries = [1000, 2000, 3000, 4000, 5000]
+
+for salary in salaries:
+    print(salary)
+
+for salary in salaries:
+    print(salary * 20 / 100 + salary)
+
+def new_salary(rate, salary):
+    return salary * rate / 100 + salary
+
+new_salary(20 ,1000)
+new_salary(40, 4000)
+
+for salary in salaries:
+    print(new_salary(25, salary))
+
+salaries_2 = [10700, 25000, 30400, 40300, 50200]
+
+for salary in salaries_2:
+    print(new_salary(15, salary))
+
+# ÖRNEK: Eğer salaries'deki maaş 3000' e eşit veya büyükse 10% zam uygulansın diğer türlü 20% zam uygulansın.
+
+for salary in salaries:
+    if salary >= 3000:
+        print(new_salary(10, salary))
+    else:
+        print(new_salary(20, salary))
+
+# ÖRNEK: Girilen bir stringin tek indekslerini küçülten, çift indekslerini büyüten bir fonksiyon yazalım
+
+# range() fonksiyonu 0' dan girilen sayıya kadar bir a oluşturur. #############################################
+
+empty_list =[]
+for i in range(4, 20, 2):
+    empty_list.append(i)
+print(empty_list)
+
+#######################################################################################################################
+
+
+del new_string
+
+def alternating(string):
+    new_string = " "
+    for str_index in range(len(string)):
+        if str_index % 2 == 0:
+            new_string = new_string + string[str_index].upper()
+        else:
+            new_string = new_string + string[str_index].lower()
+    print(new_string)
+
+alternating("aaaaaaaaaaaaaaa")
+alternating("sezer kucukcan")
+
+# Break, continue, while ifadeleri bir programda ilgili akışı kesmeye, ilgili şarta bağlı olarak akışa o şartı atlayarak
+# devam etmeye ya da bir koşul sağlandığı sürece işlemleri gerçekleştirmeye devam ettiren ifadelerdir.
+
+# Break: koşul gerçekleştiğinde ilgili kodu çalıştırmayı durdurur.
+
+
+salaries
+
+for salary in salaries:                         # salary değeri 3000 olduğunda işlemi durdurur.
+    if salary == 3000:
+        break
+    print(salary)
+
+
+# continue: koşul gerçekleştiğinde devamında gelen işlemi atlar ve iterasyona devam eder.
+
+for salary in salaries:                         # salary değeri 3000 olduğunda print() işlemini atladı.
+    if salary == 3000:
+        continue
+    print(salary)
+
+
+# while: koşul gerçekleştiği sürece işlemleri gerçekleştirmeye devam eder.
+
+number = 1
+
+while number < 5:                               # number değeri 5 olana kadar number değğeri ekrana yazdırılır.
+    print(number)
+    number += 1
+
+
+# Enumarate: otomatik indeks üreteci, counter olarak görev yapar.
+
+Students
+del student
+
+for student in Students:
+    print(student)
+
+
+for i, student in enumerate(Students):              # burada indeksleme işlemi 0' dan başlar istersek bunu değiştirebiliriz.
+    print(i, student)
+
+
+for i, student in enumerate(Students, 1):
+    print(i, student)
+
+# ÖRNEK: Çift indeksteki öğrencileri A listesine, tek indeksteki öğrencileri B listesine atmak istersek.
+
+A = []
+B = []
+
+for index, student in enumerate(Students):
+    if index % 2 == 0:
+        A.append(student)
+    else:
+        B.append(student)
+print(A, B, sep = "\n")
+
+
+# ÖRNEK: Yukarıdaki probleme benzer şekilde bir divide_students fonksiyonu yazıp öğrencileri aynı liste içinde iki liste
+# olacak şekilde çift ve tek indekstekiler ayrı olacak şekilde ayıralım.
+
+groups = [[], []]
+
+def divide_students(students):
+    for index, student in enumerate(students):
+        if index % 2 == 0:
+            groups[0].append(student)
+        else:
+            groups[1].append(student)
+    print(groups)
+
+divide_students(students)
+
+
+# ÖRNEK: Alternating fonksiyonunun enumerate ile yazılması.
+
+def alternating_with_enumerate(string):
+    new_string = " "
+    for index, letter in enumerate(string):
+        if index % 2 == 0:
+            new_string += string[index].upper()
+        else:
+            new_string += string[index].lower()
+    print(new_string)
+
+alternating_with_enumerate("sezer kucukcan")                    # Görüldüğü üzere enumerate fonksiyonu stringler için de
+                                                                # bir index üretimi yapıyor.
+
+
+## Zip: Birbirinden farklı listeleri bir arada değerlendirme ve tek bir liste formatına getirme imkanı sağlar.
+
+students = ["John", "Mark", "Venessa", "Mariam"]
+departments = ["Mathematics", "Statistic", "Physics", "Astronomy"]
+ages = [23, 30, 26, 22]
+
+
+list(zip(students, departments, ages))              # Görüldüğü üzere indekse göre bir listeleme yaptı.
+
+
+# lambda, def gibi bir fonksiyon tanımlama biçimidir. def' den farkı kullan at formunda olması ve tek satırdan oluşmasıdır.
+# kullan-at' ın anlamı değişkenlerin bölümünde yer tutmamasıdır.
+
+def summer(a, b):
+    return a + b
+
+summer(1, 3) * 9
+
+new_sum = lambda a, b: a + b
+
+new_sum(4, 5)
+
+# map, döngü yazma işlemini kolaylaştıran bir fonksiyondur.
+
+salaries
+
+def new_salary(x):
+    return x * 20 / 100 + x
+
+new_salary(5000)
+
+for salary in salaries:
+    print(salary * (0.2) + salary)
+
+list(map(new_salary, salaries))                 # burada map' e bir fonksiyon ve içerisinde gezeceği bir liste verdik.
+
+# map ve lambda' nın birlikte kullanımı
+
+list(map(lambda x: x * 20 / 100 + x, salaries))
+
+list(map(lambda x: x ** 2, salaries))
+
+# Filter, filtereme işlemi için kullanılır.
+
+list_store = list(range(0, 11))
+
+list(filter(lambda x: x % 2 == 0, list_store))
+
+# Reduce, indirgemek anlamnda gelmektedir. reduce() fonksiyonunun kullanılabilmesi için functools içerisinden reduce
+# fonksiyonu import edilmelidir.
+
+from functools import reduce
+list_store = [1, 2, 3, 4]
+
+reduce(lambda a, b: a + b, list_store)
+
+
+
+students = ["Denise", "Arsen", "Tony", "Audrey"]
+low = lambda x: x[0].lower()
+
+print(list(map(low, students)))
+
+
+
+
+
+
