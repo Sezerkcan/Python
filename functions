@@ -1,0 +1,216 @@
+###############
+# Fonksiyonlar
+###############
+
+# Fonksiyonlar belirli görevleri yerine getirmek için yazılan kod parçalarıdır.
+# ?print() ile print fonksiyonun özelliklerini ve argümanlarını görebiliriz.
+
+?print()
+
+print("a", "b")                 # a ve b karakterlerini bastırır ve default olarak aralarına boşluk koyar.
+
+print("a"   "b")
+print("a", 25)
+
+print("a"  25)                  # str dışındaki veri tiplerinde virgülle ayırmak gerekir. Yoksa hata verir.
+
+
+
+
+print("a", "b", 25, [1,2,3])
+print("a", "b", 25, [1,2,3], sep=" - ")             # sep("") parametresine istediğimiz değerleri koyarak basılan değerler
+                                                    # arasndaki boşluk işlemini değiştirebiliriz.
+
+
+# Fonsiyon tanımlama
+# def fonksiyon_adi(argümanlar):       şeklinde fonksiyon tanmlaması yapılabilir.
+
+
+def calculate(x):
+    print(x * 2)
+
+calculate(5)
+
+def summer(arg1, arg2):
+    print(arg1 + arg2)
+
+summer(7, 8)
+summer(8, 7)
+summer(arg2 = 8, arg1 = 7)
+
+# NOT: Fonksiyon içerisinde kullanılan argümanların sırası önemlidir. Fonksiyon tekrar kullanılmak için çağrıldığında
+# içerisine verdiğimiz değerlerin sırasına göre argümanlar değer alır ve fonksiyon içerisinde kullanılır. İstersek bu
+# sıralamayı daha sonra değiştirebiliriz.
+
+
+# Docstring, fonksiyonlarımıza herkesin anlayabileceği şekilde bilgi notu ekleme yoludur.
+
+def summer_2(arg1, arg2):
+    """
+
+    Sum of two numbers
+
+    :param arg1:
+    :param arg2:
+
+    :return:
+
+
+    """
+    print(arg1 + arg2)
+
+?summer_2()                     # fonksiyonun özelliklerini görebiliriz.
+
+# Settings (ctrl + alt + S) >> Tools >> Python integrated tools >> Docstring format kısmından docstring görünümü
+# değiştirilebilir.
+
+
+# Statement(Body) bölümü fonksiyonların ne yaptığını ve bu yaptığı işlemleri hangi sırayla yapacağının tanımlandığı bölümdür.
+
+def say_hi():
+    print("merhaba")
+    print("hi")
+    print("hello")
+
+say_hi()
+
+# NOT: yukarıda da görüldüğü üzere fonksiyonlar bir argüman olmadan da tanımlanabilir. Fakat fonksiyon içerisine bir
+# argüman vermişsek fonksiyonu çağırdımızda içerisine argüman vermeliyiz. Argümanlar fonksiyon içerisinde tekrar eden
+# yazma işlemlerini kolaylaştırmaya yarar.
+
+def say_hello(string):
+    print(string)
+    print("hello")
+    print("hi")
+
+say_hello()
+say_hello("miuul")
+
+def welcome(string):
+    print("hello", string, "how are you? ")
+
+welcome("sezer")
+
+def multiplication(a, b):
+    c = a * b
+    print(c)
+
+multiplication(10, 9)
+
+# Girilen değerleri çarpıp bir listede saklayan fonksiyon tanımlama
+
+element_list = []
+
+def add_element(a, b):
+    c = a * b
+    element_list.append(c)
+    print(element_list)
+
+add_element(3, 4)
+add_element(4, 6)
+add_element(4.4 , 6.4)
+
+# Not: fonksiyonun gövdesinde tanımlanan değişkenler yerel(local) değişkenlerdir ve global değişkenler kısmında yer tut-
+# mayacağından genel kod yapısı içerisinde bu değişkenler çağrıldığında kullanılamazlar.
+
+
+# Fonksiyonlar tanımlarken bazı argümanlar önceden tanımlanmış olabilir. Print() fonksiyonundaki sep= " " parametresi ön-
+# ceden tanımlanmıştır. Biz dilersel default kullanımın aksine istediğimiz bir kullanımı seçebiliriz.
+
+def divide(a, b):
+    print(a / b)
+
+divide(1, 2)
+
+def divide_2(a, b = 1):
+    print(a / b)
+
+divide_2(3)
+
+def say_hi_3(string = "Merhaba"):
+    print(string)
+    print("Hi")
+    print("Hello")
+
+say_hi_3()                      # Argüman kısmı default olduğundan boş bırakıldığında default olan değeri basar.
+
+say_hi_3("Mrb")                 # İstersek default değerleri değiştirebiliriz.
+
+
+
+
+# Not: Bir fonksiyon içerisinde print kullanılmışsa fonksiyonu çağıdığmızda işlemi tek bir kere yaptığından çıktısını
+# kullanamayız. Bunun için return kullanabiliriz.
+
+type(say_hi_3())               # Fonksiyonlar nonetype olduğundan çıktılarını matematiksel işlemlerde kullanamayız.
+                               # Bunun için "return" kullanmalıyız.
+
+
+def calculate(varm, moisture, charge):
+    print((varm + moisture)/charge)
+
+calculate(98, 12, 78) * 10              # TypeError verir çünkü nonetype bir ifadeyle int ifadeyi matematiksel işleme
+                                        # sokamayız.
+
+
+def calculate(varm, moisture, charge):
+    return  (varm + moisture) / charge
+
+type(calculate(98, 12, 78))             # Tip bilgisi float olarak karşımıza çıktı.
+
+calculate(98, 12, 78) * 10
+
+def calculate(varm, moisture, charge):
+    varm = varm * 2
+    moisture = moisture * 2
+    charge = charge * 2
+    output = (varm + moisture) / charge
+    return varm, moisture, charge, output
+
+calculate(98, 12, 78)
+type(calculate(98, 12, 78))                   # Burada fonksiyonun tipinin tuple olduğu görülmektedir
+
+varm, moisture, charge, output = calculate(98, 12, 78)              # değişkenlere tuple içerisindeki değerler atanarak
+                                                                    # global değişkenler oluşturulabilir.
+del moisture, charge, output
+
+# Fonksiyon içerisinde fonksiyon çağırmak.
+
+def calculate (varm, moisture, charge):
+    return int((varm + moisture) / charge)
+
+calculate(90, 12, 12)
+
+def standardization(a, p):
+    return a * 10 / 100 * p * p
+
+standardization(45, 1)
+
+def all_calculation(varm, moisture, charge, p):
+    a = calculate(varm, moisture, charge)
+    b = standardization(a, p)
+    print(b * 10)
+
+all_calculation(1, 3, 5, 12)                # a değeri calculate fonksiyonundan geldiğinden argümanlar kısmında belirt-
+                                            # medik dolayısıyla a için bir değer girmedik.
+
+
+def all_calculation(varm, moisture, charge, a, p):
+    print(calculate(varm, moisture, charge))
+    b = standardization(a, p)
+    print(b * 10)
+
+all_calculation(1, 3, 5, 12)                # p argümanı eksik olduğundan hata verir.
+
+all_calculation(1, 3, 5, 19, 12)
+
+
+list_store = [1, 2]
+def add_element(a, b):
+    c = a * b
+    list_store.append(c)
+    print(list_store)
+
+add_element(1, 9)                           # c değişkeni local' den global' e taşınmış oldu.
+
+
