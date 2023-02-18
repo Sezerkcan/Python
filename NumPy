@@ -1,0 +1,181 @@
+###############
+# Numpy
+###############
+
+"""
+1 -) "Numerical python" ifadesinin kısaltılmışıdır.
+2 -) Bilimsel hesaplamalar için kullanılır.
+3 -) Arrayler, çok boyutlu arrayler ve matrisler üzerinde yüksek performanslı çalışma imkanı sağlar.
+4 -) Temelleri 1995 yılında atılmıştır.
+5 -) Neden NumpPy ? sabit tipte veri tuttuğundan daha hızlı çalışır ve çoklu arraylerle çalışıldığında işlem kolaylığı
+sağlar. Bunun yanında yüksek seviyeden işlemler yapmamızı sağlar.
+
+"""
+
+# NumPy' ı işlemlerimizde kullanabilmemiz için koda dahil etmemiz gerekir.
+# Dahil etme işlemi "import" komutuyla yapılır.
+
+import numpy as np                      # Kütüphaneyi daha sonra kullanmak istediğimizde np kısaltmasını kullanacağız.
+
+
+#  iki listeyi indekslerine göre çarpmak istediğimizde numpy kullanmak işlerimizi kolaylaştırır. Aksi takdirde indekslere
+# erişmek için bir döngüye ve yeni listeye eleman eklemek için append() metoduna ihtiyaç duyarız.
+
+a = [1, 2, 3, 4]
+b = [2, 3, 4, 5]
+
+ab = []
+
+for i in range(0, len(a)):
+    ab.append(a[i] * b[i])
+print(ab)
+
+# şimdi numpy array kullanarak aynı işlemi yapalım.
+
+A = np.array([1, 2, 3, 4])
+B = np.array([2, 3, 4, 5])
+
+A * B                   # Görüldüğü üzere tek satır kodla aynı işlemi yaptırdık.
+
+type(A)                 # Array'in tip bilgisi numpy.ndarray olarak karşımıza çıktı.
+
+
+# Numpy arrayi oluşturmak için array() metodu kullanılabilir.
+
+np.array([1, 2, 3, 4, 5])
+
+np.zeros(10, dtype=int)                 # normalde float türünde 10 adet 0 içeren bir arrray oluşturur ancak dtype ile
+                                        # veri tipini int olarak değiştirdik.
+
+
+np.random.randint(0, 10, size=10)       # 0' dan 10'a kadar 10 adet rastgele integer sayı içeren bir array üretir.
+
+np.random.normal(10, 4, (3, 4))         # ortalaması 10, standart sapması 4 olan 3 satır, 4 sütundan oluşan normal
+                                        # dağılımlı bir array oluşturur.
+
+# NumPy Array özellikleri
+
+""" 
+ndim : boyut sayısı
+shape : boyut bilgisi
+size : toplam eleman sayısı
+dtype : array veri tipi
+
+"""
+
+a = np.random.randint(10, size=5)
+
+a.ndim              # tek boyutlu olduğundan boyut sayısı 1 olarak çıktı verdi
+a.size              # eleman sayısı 5 olduğundan '5' olarak çıktı verdi
+a.shape             # tek boyutlu olduğu için birinci boyutta 5 eleman var dedi.
+a.dtype             # veri tipi int'32' olarak karşımıza çıkar
+
+
+# NumPy array' in boyutunu değiştirmek istediğimizde reshape() kullanabiliriz.
+
+np.random.randint(1, 10, size=9)
+np.random.randint(1, 10, size=9).reshape(3, 3)          # 3' e 3 boyutlarında bir array oluşturur. 10 eleman olsaydı
+                                                        # hata verecekti.
+
+# index seçimi için a[0], a[0:5] şeklinde bir kullanım yapabiliriz. Bu sayede bir numpy arrayin elemanlarına ulaşılabilir.
+
+a = np.random.randint(10, size=10)
+
+a[1]
+a[8]
+
+a[2:8]
+
+a[0] = 999                  # numpy array' in elemanlarını değiştirebiliriz.
+
+m = np.random.randint(10, size=(3, 5))          # 3 satır 5 sütundan oluşan 0' dan 10' a kadar elemanları olan bir
+                                                # array oluşturur.
+
+
+m[0, 0]                 # m[x, y] x. satır y. sütundaki elemanı bastırır. 0. indeksten başlar.
+
+m[1, 1]
+
+m[2, 3]
+
+m[2, 3] = 999                       # 8 yerine 999 değerini yazdırdık.
+
+m[2, 3] = 2.9                       # Array tek tip veri(int) tuttuğundan 2.9 olan float değeri 2 olarak kaydeder.
+
+m[:, 0]                             #  0. sütundaki tüm elemanları bastırır.
+
+m[1, :]                             # 1. satırdaki tüm sütun sütun elemanlarını bastırır.
+
+
+# Fancy index : Birden fazla index' e ait elemanları seçmemizi sağlar.
+
+v = np.arange(0, 30, 3)             # 0' dan 30'a kadar 3' er artarak giden elemanları olan bir array oluşturur.
+
+v[1]
+v[4]
+
+catch = [1, 2, 3]                   # catch listesindeki elemanlara göre indekslere erişim sağlar.
+
+v[catch]
+
+
+# Numpy array' de de koşullu işlemler yapılabilir.
+
+v = np.array([1, 2, 3, 4, 5])
+
+# klasik döngü ile arrayin 3' den küçük elemanlarına erişelim.
+
+ab = []
+for i in v:
+    if i < 3:
+        ab.append(i)
+print(ab)
+
+# Numpy ile yapalım.
+
+v < 3
+
+v[v < 3]
+
+v[v > 3]
+
+v[v == 3]
+
+v[v != 3]
+
+
+# Matematiksel işlemler
+
+v = np.array([1, 2, 3, 4, 5])
+
+v / 5
+v * 5
+v ** 2
+v - 1
+
+# Bunların dışında bazı metodları kullanarak da matematiksel işlemleri yapabilirdik.
+
+np.subtract(v, 1)
+np.add(v, 1)
+np.mean(v)
+np.sum(v)
+np.min(v)
+np.max(v)
+np.var(v)
+
+# Bu işlemlerin ardından v array' inin globaldeki değeri değişmez bunun için yeniden atama gereklidir.
+
+
+# numpy ile iki bilinmeyenli denklem çözme
+
+"""
+5x0 + x1 = 12
+x0 + 3x1 = 10
+denklemini çözelim
+"""
+
+a = np.array([[5, 1], [1, 3]])
+b = np.array([12, 10])
+np.linalg.solve(a, b)
+
+
