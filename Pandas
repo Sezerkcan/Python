@@ -1,0 +1,375 @@
+################
+# PANDAS
+################
+
+# Ekonometrik ve finansal çalışmalar için doğmuş daha sonra veri analitiği için sıkça kullanılan bir kütüphane olmuştur.
+
+import pandas as pd
+
+s = pd.Series([10, 72, 12, 4, 5])
+
+type(s)                 # Veri tipi pandas.core.series.Series' dir.
+
+s.index                 # index bilgisini verir. 0. indeksten 5. indekse kadar olduğunu gösterdi.
+
+s.dtype                 # Veri tipi int'64'
+
+s.size                  # eleman sayısı 5' tir.
+
+s.ndim                  # tek boyutludur.
+
+s.values                # elemanlarını bir numpy arrayde yazdırır.
+type(s.values)
+
+s.head(3)               # Baştan 3 elamanı indeksleriyle beraber yazdırır.
+
+s.tail(3)               # sondan 3 elemanı indeksleriyle yazdırır.
+
+
+# Veri okuma
+
+df = pd.read_csv("datasets/advertising.csv")
+
+df.head()               # ilk 5 satırı indeksleriyle gösterir.
+
+####
+
+import pandas as pd
+import seaborn as sns
+
+df = sns.load_dataset("titanic")
+df.head()
+
+df.tail()
+
+df.shape                # Boyut bilgisini vermektedir. Dataframe 891 satır ve 15 sütundan oluşmaktadır.
+
+df.info()               # Detaylı bilgi verir. Değişkenler ve tipleri, dolu gözlem (non-null) sayısı vb.
+
+df.columns              # Değişkenleri verir.
+
+df.index
+
+df.describe().T         # Dataframe' in özet istatistiklerini verir. Sayısal değişkenlerin count, mean, std, min, .. bilgileri
+
+
+df.isnull()             # Df' nin eksik değer bilgisini true, false şeklinde satır-sütun olarak verir.
+
+df.isnull().values      # eksik değerleri bir array içerisinde verir.
+
+df.isnull().values.any()      # Değişkenlerden en az birinin eksik değere sahip olduğu görülür.
+
+
+df.isnull().sum()             # Eksik değerleri toplayacağından değişkenlerin kaç tane eksik değere sahip olduğu öğrenilir.
+
+
+# Dataframe' in herhangi bir değişkenine erişmek için
+
+df["sex"].head()              # cinsiyet sütünunu gösterir.
+
+df["sex"].value_counts()      # cinsiyet sayılarını verir.
+
+# Pandas seçim işlemleri
+
+import pandas as pd
+import seaborn as sns
+
+df = sns.load_dataset("titanic")
+df[0:13]
+
+df.drop(0, axis=0)              # 0. satırı dataframe' den siler. Axis=0 ifadesi satırlar için kullanılır.
+
+
+# birden fazla satırı silmek için fancy index kullanılabilir.
+
+delete_indexes = [1, 3, 5, 7]
+
+df.drop(delete_indexes, axis=0)     # 1, 3, 5 ve 7 numaralı satırları dataframe' den atar. # ,inplace = True koyarak
+                                    # df' yi kaydedebiliriz.
+
+
+## Değişkeni indekse çevirmek
+
+# NOT: df.age.head() = df["age"].head() ile aynıdır.
+
+df.index = df.age                   # age değişkeni indexe atandı ancak iki tane age adında sütun oluştu. Bunun için
+                                    # drop() metoduyla age değişkenini df' den atabiliriz.
+
+
+df = df.drop("age", axis=1)              # sütun için axis=1 kullanıldı ve tüm age sutünü listeden atıldı.
+
+
+# indexi değişkene çevirmek için
+
+df["age"] = df.index
+
+df = df.reset_index()                        # indeks değişkeni silindi ve tekrar değişkene eklendi.
+
+
+# değişkenler üzerinde işlemler.
+
+pd.set_option('display.max_columns', None)          # Tüm değişken sütunlarını gösterir.
+
+"age" in df                 # değişken sorgusu 'in' ile yapılabilir.
+
+
+# Not: Bir değişkeni seçerken df["age"] şeklinde bir kullanım yaptığımızda çktımızın veri tipi "pandas.core.series.Series"
+# olacağından fonksiyonel işlemlerde bu tür bir yerleştirme hata verecektir. Dolayısıyla çift parantez kullanırız. Artık
+# çıktı dataframe olur.
+
+df[["age"]].head()
+
+type(df[["age"]].head())
+
+df[["age", "alive"]]
+
+col_name = ["age", "adult_male", "alive"]
+df[col_name]
+
+# Not: Dataframe' e yeni bir değişken eklemek istediğimizde var olan bir değişken değilse otomatik olarak ekler.
+
+df["age2"] = df["age"] ** 2         # age2 değişkenini age değişkeninin karesi şeklinde ekler.
+
+df["age3"] = df["age"] / df["age2"]
+
+df.drop("age3", axis=1).head()
+
+df.drop("age2", axis=1).head()          # drop() kesin olarak age değişkenlerini silmez istersek inplace=True ile kaydedebiliriz.
+
+# içerisinde age geçen değişkenleri seçmek istersek.
+
+df.loc[:, df.columns.str.contains("age")].head()     # ~df.columns.str tilda kullanımında ise bunun dışındakileri seçer.
+
+
+
+# iloc & loc
+
+# Dataframe' lerde seçim işlemleri için kullanılırlar.
+# iloc numpy ve listelerdeki integer değerlere göre index seçimi yapar.
+# loc ise label tabanlı index seçimi yapar.
+
+# iloc : integer based selection
+
+df.iloc[0:3]            # ilk üç satırı seçer.
+
+df.iloc[0, 0]           # 0. satır ve 0. sütündaki elemanı seçer.
+
+
+# loc : label based selection
+
+df.loc[0:3]             # ilk 4 satırı seçer. 3 etiketini baz aldığından 3. satırı da seçer
+
+df.iloc[0:3, 0:3]       # 0' dan 3. satıra ve 0'dan 3. sütuna kadar alır. İnteger tabanlı olduğundan indexi integer olarak
+                        # vermeliyiz aksi halde hata verir.
+
+col_names = ["age", "embraked", "alive"]
+df.loc[0:3, col_names]              # 0' dan 3. satıra kadar(dahil) verilen değişkenleri alır.
+
+
+# Koşullu seçim
+
+df[df["age"] > 50].head()           # 50 yaşından büyük olanları seçer
+
+df[df["age"] > 50]["age"].count()   # 50 yaşından büyük kişi sayısını verir.
+
+df.loc[df["age"] > 50, "class"].head()   ## 50 yaşından büyük class değişkenine sahip dataframe' i gösterir.
+
+df.loc[df["age"] > 50, ["age", "class"]].head()         # Birden fazla değişken için böyle bir kullanım yaparız.
+
+df.loc[(df["age"] > 50) & (df["sex"] == "male"), ["age", "class"]].head()       #koşul sayısını artırmak istersek () kullanırız.
+
+df.loc[(df["age"] > 50) & (df["sex"] == "male") & ((df["embark_town"] == "Cherbourg") | (df["embark_town"] == "Southampton")), ["age", "class", "embark_town"]].head()
+
+
+# Toplulaştırma ve Gruplama
+# Bir veri yapısının içinde bulunan değerlerin toplu bir şekilde temsil edilmesine toplulaştırma denir. Özet istatistikler
+# bunlara iyi bir örnektir.
+
+import pandas as pd
+import seaborn as sns
+
+pd.set_option('display.max_columns', None)
+df = sns.load_dataset("titanic")
+df.head()
+
+df["age"].mean()                                # 'age' değişkenin ortalamasını gösterir.
+
+df.groupby("sex")["age"].mean()                 # 'sex' değişkenine göre gruplandırma yapar ve age değişkeninin orta-
+                                                # lamasını gösterir.
+
+df.groupby("sex").agg({"age": "mean"})          # sex değişkenine göre gruplandırdı ve yaş değişkenine göre ortalama aldı.
+
+df.groupby("sex").agg({"age": ["mean", "sum"]})        # yaş değişkenine göre ortalama aldı ve toplam işlemi uyguladı.
+
+
+df.groupby("sex").agg({"age": ["mean", "sum"],      # survived değişkenine göre de toplulaştırma yaptı.
+                       "survived": "mean"})
+
+
+df.groupby(["sex", "embark_town"]).agg({"age": ["mean"],         # Burada ise hep cinsiyete göre hem de embark
+                       "survived": "mean"})                             # değişkenine göre bir gruplandırma yapılmıştır.
+
+
+
+df.groupby(["sex", "embark_town", "class"]).agg({
+    "age": ["mean"],
+    "survived": ["mean"],
+    "sex": "count"})
+
+
+# Pivot Table: Veri setini kırılımlar(gruplar) açısından değerlendirmek ve ilgilendiğimiz özet istatistiği bu kırılımlar
+# açısından görme imkanı sağlar.
+
+
+df.pivot_table("survived", "sex", "embarked")           # ilk argüman kesişim için kullanılacak değişkeni, ikinci argüman
+                                                        # satırda kullanılacak değişkeni, üçüncü argüman ise sütunda
+                                                        # kullanılacak değişkeni ifade eder. Kesişimde survived değişkeninin
+                                                        # ortalaması görülür sebebi ise pivot_table fonksiyonunun ön
+                                                        # tanımlı değerinin mean olmasıdır.
+
+
+df.pivot_table("survived", "sex", "embarked", aggfunc="std")            # aggfunc ile ön tanımlı mean değeri standart
+                                                                        # sapma olarak değiştirildi.
+
+
+df.pivot_table("survived", "sex", ["embarked", "class"])                # sütunlar kısmına class değişkeni de eklendi.
+
+
+
+
+### Yaş aralığına göre hayatta kalma oranını görmek istersek ne yapacağız. Bu durumda new_age adında yeni bir yaş
+# değişkeni oluşturup bu değişkeni cut() fonksiyonuyla şekillendirebiliriz.
+
+df["new_age"] = pd.cut(df["age"], [0, 10, 18, 25, 40, 90])
+
+df.pivot_table("survived", "sex", "new_age")
+
+df.pivot_table("survived", "sex", ["new_age", "class"])
+
+
+# pd.set_option('display.width', sayı) ile çıktının boyutlarını ayarlayabiliriz.
+
+pd.set_option('display.width', 300)
+
+
+
+##################
+# Apply ve Lambda
+##################
+# Apply, satır ya da sütunlarda otomatik olarak fonksiyon çalıştırma imkanı sağlar. lambda ise kullanat formundaki tek
+# satırlık fonksiyon tanımlama işlemi için kullanılır.
+
+
+import pandas as pd
+import seaborn as sns
+
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 500)
+df = sns.load_dataset("titanic")
+df.head()
+
+
+df["age2"] = df["age"] * 2
+df["age3"] = df["age"] * 5
+
+(df["age"] / 10).head()                     # head() uygulamak için paranteze almamız gerekmektedir.
+(df["age2"] / 10).head()
+(df["age3"] / 10).head()
+
+
+# bu işlemleri bir döngü içerisinde yapmak istersek
+
+for col in df.columns:
+    if "age" in col:
+        print((df[col]/10).head())
+
+
+# burada yalnızca print işlemi yapıldı. df' e kaydetmek için yeniden atama yapılmalıdır.
+
+for col in df.columns:
+    if "age" in col:
+        df[col] = df[col] / 10
+
+
+# şimdi apply ve lambda kullanarak benzer işlemleri yapalım.
+
+df[["age", "age2", "age3"]].apply(lambda x: x/10).head()            # apply içersine verdiğimiz fonksiyonu df değişken-
+                                                                    # leri üzerine uyguladı.
+
+
+df.loc[:, df.columns.str.contains("age")].apply(lambda x: x/10).head()      # tüm satırlar ve içerisinde "age" geçen
+                                                                            # sütunlara uygular.
+
+df.loc[:, df.columns.str.contains("age")].apply(lambda x: (x - x.mean()) / x.std()).head()
+
+# x değişkeninden x' in ortalamasını çıkarır ve standart sapmasına böler.
+
+# bu işlemleri dışarda bir fonksiyon tanımlayıp apply içerisine de koyabilirdik.
+
+def standart_scaler(col_name):
+    return (col_name - col_name.mean()) / col_name.std()
+
+df.loc[:, df.columns.str.contains("age")].apply(standart_scaler).head()
+
+# df.loc[:, ["age", "age2", "age3"]] = df.loc[:, df.columns.str.contains("age")].apply(standart_scaler)
+
+df.loc[:, df.columns.str.contains("age")] = df.loc[:, df.columns.str.contains("age")].apply(standart_scaler)
+
+
+
+
+################################
+# Birleştirme (Join) İşlemleri
+################################
+
+
+import numpy as np
+import seaborn as sns
+
+m = np.random.randint(1, 30, size=(5, 3))
+df1 = pd.DataFrame(m, columns=["var1", "var2", "var3"])
+df2 = df1 + 99
+
+# Buraya kadar df1 ve df2 adında iki adet dataframe oluşturduk. Bu dataframe'leri alt alta birleştirmek için pd.concat()
+# içerisinde bir listede iki df' yi yazarız
+
+pd.concat([df1, df2])
+
+# df' leri birleştirdik ancak indeksler 0..4 0..4 şeklinde alt alta sıralandı. Bunu düzeltmek için ignore_index = True
+# kullanırız ve indekslerin artık sıralı olduğu görülür.
+
+
+pd.concat([df1, df2], ignore_index=True)            # concat() içerisinde axis = 0 olarak default edilmiştir. Eğer bir-
+                                                    # leştirme işlemini sütun bazında yapmak istersek axis = 1 kullanırız.
+
+
+
+##################################
+# Merge ile Birleştirme İşlemleri
+##################################
+
+
+df1 = pd.DataFrame({'employees': ['john', 'dennis', 'mark', 'maria'],
+                    'group': ['accounting', 'engineering', 'engineering', 'hr']})
+
+
+df2 = pd.DataFrame({'employees': ['mark', 'john', 'dennis', 'maria'],
+                    'start_date': [2010, 2009, 2014, 2019]})
+
+df3 = pd.merge(df1, df2)                  # hangi değişkene göre birleştireceği söylenmemesine rağmen employees değişkenine
+                                    # göre birleştirme işlemi yaptı. Bunu özellikle belirtmek isterse on="employees"
+                                    # kullanabiliriz.
+
+
+pd.merge(df1, df2, on="employees")
+
+# Her çalışanın müdürünün bilgisine erişmek istiyoruz.
+
+df4 = pd.DataFrame({'group': ['accounting', 'engineering', 'hr'],
+                    'manager': ['Caner', 'Mustafa', 'Berkcan']})
+
+
+pd.merge(df3, df4)
+
+dict = {"Paris": [10], "Berlin": [20]}
+pd.DataFrame(dict)
