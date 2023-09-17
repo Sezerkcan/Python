@@ -1,7 +1,7 @@
 
 ###################
 # Sayılar
-###############
+###################
 
 # Sayılar integer, float ve complex sayıları içeren bir veri tipidir.
 
@@ -10,8 +10,7 @@ b = 10.5
 a * 3
 a / 7
 
-a * b / 10              # Görüldüğü üzere toplama, çıkarma, çarpma ve bölme gibi matematiksel işlemler
-                        # kolaylıkla yapılabiliyor.
+a * b / 10              # Görüldüğü üzere toplama, çıkarma, çarpma ve bölme gibi matematiksel işlemler kolaylıkla yapılabiliyor.
 
 a ** 2                  # Üs alma işlemi a ** b şeklinde yapılabilir.
 
@@ -33,11 +32,11 @@ name
 
 
 # Birden fazla satırı karakter dizisi olarak kullanmak için 3 adet çift tırnak kullanılabilir.
+
 """
         İsim: Sezer Küçükcan
         Bölüm: Elektrik - Elektronik Mühendisliği
         Sınıf: 4.Sınıf 
-
 """
 
 # Karakter dizilerinin elemanlarına erişmek için [indeks] kullanılır.
@@ -63,8 +62,10 @@ long_str = """
 
 """
 
-"sezer" in long_str
+"sezer" in long_str                     # Python key sensitive olduğundan isimlendirmelerde büyük - küçük harf önemlidir.
+
 "Sezer" in long_str
+
 
 
 ####  String metotları
@@ -159,10 +160,12 @@ notes
 
 # pop() metodu indekse göre eleman siler.
 
-notes.pop()                     # indeks verilmediğinde listenin sonundaki elemanı listeden siler.
+notes.pop()                     # indeks verilmediğinde listenin sonundaki elemanı listeden siler. Bu değere atama yaparak
+                                # istersek daha sonra tekrar kullanabiliriz.
 notes
-notes.pop(0)
-notes                           # 0. indeksteki elemanı listeden siler.
+
+notes.pop(0)                    # 0. indeksteki elemanı listeden siler.
+notes
 
 # insert() metodu indekse göre listeye eleman ekler.
 
@@ -171,12 +174,12 @@ notes
 
 
 
-###################
+#######################
 # Sözlük (dictionary)
-###################
+#######################
 
 # Süslü parantez içerisine key ve value değerleri eklenerek oluşturulur ve bu elemanlar virgülle birbirinden ayrılır.
-# Listeler gibi elemanları değiştirilebilir ancak index bilgisi içermezler (sırasızdırlar)
+# Listeler gibi elemanları değiştirilebilir ancak index bilgisi içermezler (sırasızdırlar).
 
 dictionary = {"REG": "Regression",
               "LOG": "Logistic Regression",
@@ -251,11 +254,12 @@ t
 # Küme (set)
 ###################
 
-# Kümeler de sözlükler gibi süslü parantez içerisine veriler girilerek oluşturulur ancak key value değerleri yoktur.
+# Kümeler de sözlükler gibi süslü parantez içerisine veriler girilerek oluşturulur ancak key-value değerleri yoktur.
 # Küme elemanları sırasızdır.
 
-set_1 = set([1,3,5])
-set_2 = set([1,2,3])
+set_1 = set([1, 3, 5])
+set_2 = set([1, 2, 3])
+
 type(set_1)
 
 set_1[0]                        # Görüldüğü üzere indeks bilgisi içermezler.
@@ -266,6 +270,7 @@ dir(set)
 
 set_1.difference(set_2)
 set_2.difference(set_1)
+set_1.symmetric_difference(set_2)                   # iki kümenin birbirine göre farklarını verir.
 
 set_1 - set_2                   # Görüldüğü üzere metotlar yerine matematiksel operatörler de kullanılabilir.
 set_2 - set_1
@@ -284,8 +289,8 @@ set_1.isdisjoint(set_2)         # İki kümenin kesişimi olduğu için 'False' 
 
 # Alt küme sorgulaması için issubset() metodu kullanılır.
 
-set_1 = {7,8,9}
-set_2 = {5,6,7,8,9,10}
+set_1 = {7, 8, 9}
+set_2 = {5, 6, 7, 8, 9, 10}
 set_1.issubset(set_2)
 
 # Bir kümenin başka bir kümeyi kapsayıp kapsamadığının sorgusu için issuperset() metodu kullanılır.
