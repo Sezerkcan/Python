@@ -18,7 +18,7 @@ sağlar. Bunun yanında yüksek seviyeden işlemler yapmamızı sağlar.
 import numpy as np                      # Kütüphaneyi daha sonra kullanmak istediğimizde np kısaltmasını kullanacağız.
 
 
-#  iki listeyi indekslerine göre çarpmak istediğimizde numpy kullanmak işlerimizi kolaylaştırır. Aksi takdirde indekslere
+# İki listeyi indekslerine göre çarpmak istediğimizde numpy kullanmak işlerimizi kolaylaştırır. Aksi takdirde indekslere
 # erişmek için bir döngüye ve yeni listeye eleman eklemek için append() metoduna ihtiyaç duyarız.
 
 a = [1, 2, 3, 4]
@@ -44,7 +44,7 @@ type(A)                 # Array'in tip bilgisi numpy.ndarray olarak karşımıza
 
 np.array([1, 2, 3, 4, 5])
 
-np.zeros(10, dtype=int)                 # normalde float türünde 10 adet 0 içeren bir arrray oluşturur ancak dtype ile
+np.zeros(10, dtype=int)                 # normalde float türünde 10 adet 0.0 içeren bir array oluşturur ancak dtype ile
                                         # veri tipini int olarak değiştirdik.
 
 
@@ -71,11 +71,11 @@ a.shape             # tek boyutlu olduğu için birinci boyutta 5 eleman var ded
 a.dtype             # veri tipi int'32' olarak karşımıza çıkar
 
 
-# NumPy array' in boyutunu değiştirmek istediğimizde reshape() kullanabiliriz.
+# NumPy array' in boyutunu değiştirmek istediğimizde reshape() metodunu kullanabiliriz.
 
-np.random.randint(1, 10, size=9)
-np.random.randint(1, 10, size=9).reshape(3, 3)          # 3' e 3 boyutlarında bir array oluşturur. 10 eleman olsaydı
-                                                        # hata verecekti.
+a = np.random.randint(1, 10, size=9)
+a = np.random.randint(1, 10, size=9).reshape(3, 3)          # 3' e 3 boyutlarında bir array oluşturur. 10 eleman olsaydı
+                                                            # hata verecekti.
 
 # index seçimi için a[0], a[0:5] şeklinde bir kullanım yapabiliriz. Bu sayede bir numpy arrayin elemanlarına ulaşılabilir.
 
@@ -102,7 +102,7 @@ m[2, 3] = 999                       # 8 yerine 999 değerini yazdırdık.
 
 m[2, 3] = 2.9                       # Array tek tip veri(int) tuttuğundan 2.9 olan float değeri 2 olarak kaydeder.
 
-m[:, 0]                             #  0. sütundaki tüm elemanları bastırır.
+m[:, 0]                             # 0. sütundaki tüm elemanları bastırır.
 
 m[1, :]                             # 1. satırdaki tüm sütun sütun elemanlarını bastırır.
 
@@ -123,7 +123,7 @@ v[catch]
 
 v = np.array([1, 2, 3, 4, 5])
 
-# klasik döngü ile arrayin 3' den küçük elemanlarına erişelim.
+# klasik döngü ile array'in 3' den küçük elemanlarına erişelim.
 
 ab = []
 for i in v:
