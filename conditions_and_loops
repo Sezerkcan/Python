@@ -1,8 +1,8 @@
-######################
+##########################
 # Koşullar (Conditions)
-######################
+##########################
 
-# Bir program yazımı esnasında akış kontrolü sağlayan ve programların belirli kurallara nasıl ilerleyiciğinin
+# Bir program yazımı esnasında akış kontrolü sağlayan ve programların belirli kurallara göre nasıl ilerleyiciğinin
 # programcılar tarafından gösterilmesini sağlayan ifadelerdir.
 
 # Koşullar mantıksal "True", "False" ifadeleriyle kontrol edilir. Koşulun sağlanması için "True" gerekirken koşulun sağ-
@@ -28,6 +28,7 @@ if number == 10:
     print("number is 10")
 
 number = 10
+
 
 def number_check(number):
     if number == 10:
@@ -93,7 +94,7 @@ for salary in salaries:
 def new_salary(rate, salary):
     return salary * rate / 100 + salary
 
-new_salary(20 ,1000)
+new_salary(20, 1000)
 new_salary(40, 4000)
 
 for salary in salaries:
@@ -112,9 +113,9 @@ for salary in salaries:
     else:
         print(new_salary(20, salary))
 
-# ÖRNEK: Girilen bir stringin tek indekslerini küçülten, çift indekslerini büyüten bir fonksiyon yazalım
+# ÖRNEK: Girilen bir stringin tek indekslerini küçülten, çift indekslerini büyüten bir fonksiyon yazalım.
 
-# range() fonksiyonu 0' dan girilen sayıya kadar bir a oluşturur. #############################################
+# range() fonksiyonu 0' dan girilen sayıya kadar bir aralık oluşturur. #############################################
 
 empty_list =[]
 for i in range(4, 20, 2):
@@ -164,7 +165,7 @@ for salary in salaries:                         # salary değeri 3000 olduğunda
 
 number = 1
 
-while number < 5:                               # number değeri 5 olana kadar number değğeri ekrana yazdırılır.
+while number < 5:                               # number değeri 5 olana kadar number değeri ekrana yazdırılır.
     print(number)
     number += 1
 
@@ -195,7 +196,7 @@ for index, student in enumerate(Students):
         A.append(student)
     else:
         B.append(student)
-print(A, B, sep = "\n")
+print(A, B, sep="\n")
 
 
 # ÖRNEK: Yukarıdaki probleme benzer şekilde bir divide_students fonksiyonu yazıp öğrencileri aynı liste içinde iki liste
@@ -203,15 +204,15 @@ print(A, B, sep = "\n")
 
 groups = [[], []]
 
-def divide_students(students):
-    for index, student in enumerate(students):
+def divide_students():
+    for index, student in enumerate(Students):
         if index % 2 == 0:
             groups[0].append(student)
         else:
             groups[1].append(student)
     print(groups)
 
-divide_students(students)
+divide_students()
 
 
 # ÖRNEK: Alternating fonksiyonunun enumerate ile yazılması.
@@ -240,7 +241,7 @@ list(zip(students, departments, ages))              # Görüldüğü üzere inde
 
 
 # lambda, def gibi bir fonksiyon tanımlama biçimidir. def' den farkı kullan at formunda olması ve tek satırdan oluşmasıdır.
-# kullan-at' ın anlamı değişkenlerin bölümünde yer tutmamasıdır.
+# kullan-at' ın anlamı değişkenlerin global değişkenler bölümünde yer tutmamasıdır.
 
 def summer(a, b):
     return a + b
@@ -271,7 +272,7 @@ list(map(lambda x: x * 20 / 100 + x, salaries))
 
 list(map(lambda x: x ** 2, salaries))
 
-# Filter, filtereme işlemi için kullanılır.
+# Filter, filtreleme işlemi için kullanılır.
 
 list_store = list(range(0, 11))
 
