@@ -1,6 +1,6 @@
-###############
+###################
 # Fonksiyonlar
-###############
+###################
 
 # Fonksiyonlar belirli görevleri yerine getirmek için yazılan kod parçalarıdır.
 # ?print() ile print fonksiyonun özelliklerini ve argümanlarını görebiliriz.
@@ -19,7 +19,7 @@ print("a"  25)                  # str dışındaki veri tiplerinde virgülle ay�
 
 print("a", "b", 25, [1,2,3])
 print("a", "b", 25, [1,2,3], sep=" - ")             # sep("") parametresine istediğimiz değerleri koyarak basılan değerler
-                                                    # arasndaki boşluk işlemini değiştirebiliriz.
+                                                    # arasındaki boşluk işlemini değiştirebiliriz.
 
 
 # Fonsiyon tanımlama
@@ -87,7 +87,7 @@ say_hello()
 say_hello("miuul")
 
 def welcome(string):
-    print("hello", string, "how are you? ")
+    print("hello", string, "how are you?")
 
 welcome("sezer")
 
@@ -110,12 +110,12 @@ add_element(3, 4)
 add_element(4, 6)
 add_element(4.4 , 6.4)
 
-# Not: fonksiyonun gövdesinde tanımlanan değişkenler yerel(local) değişkenlerdir ve global değişkenler kısmında yer tut-
+# Not: Fonksiyonun gövdesinde tanımlanan değişkenler yerel(local) değişkenlerdir ve global değişkenler kısmında yer tut-
 # mayacağından genel kod yapısı içerisinde bu değişkenler çağrıldığında kullanılamazlar.
 
 
 # Fonksiyonlar tanımlarken bazı argümanlar önceden tanımlanmış olabilir. Print() fonksiyonundaki sep= " " parametresi ön-
-# ceden tanımlanmıştır. Biz dilersel default kullanımın aksine istediğimiz bir kullanımı seçebiliriz.
+# ceden tanımlanmıştır. Biz dilersek default kullanımın aksine istediğimiz bir kullanımı seçebiliriz.
 
 def divide(a, b):
     print(a / b)
@@ -139,14 +139,14 @@ say_hi_3("Mrb")                 # İstersek default değerleri değiştirebiliri
 
 
 
-# Not: Bir fonksiyon içerisinde print kullanılmışsa fonksiyonu çağıdığmızda işlemi tek bir kere yaptığından çıktısını
+# Not: Bir fonksiyon içerisinde print kullanılmışsa fonksiyonu çağıdığımızda işlemi tek bir kere yaptığından çıktısını
 # kullanamayız. Bunun için return kullanabiliriz.
 
 type(say_hi_3())               # Fonksiyonlar nonetype olduğundan çıktılarını matematiksel işlemlerde kullanamayız.
                                # Bunun için "return" kullanmalıyız.
 
 
-def calculate(varm, moisture, charge):
+def calculate(varm, moisture ,charge):
     print((varm + moisture)/charge)
 
 calculate(98, 12, 78) * 10              # TypeError verir çünkü nonetype bir ifadeyle int ifadeyi matematiksel işleme
@@ -212,5 +212,6 @@ def add_element(a, b):
     print(list_store)
 
 add_element(1, 9)                           # c değişkeni local' den global' e taşınmış oldu.
+
 
 
