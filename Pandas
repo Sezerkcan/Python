@@ -23,7 +23,7 @@ type(s.values)
 
 s.head(3)               # Baştan 3 elamanı indeksleriyle beraber yazdırır.
 
-s.tail(3)               # sondan 3 elemanı indeksleriyle yazdırır.
+s.tail(3)               # Sondan 3 elemanı indeksleriyle yazdırır.
 
 
 # Veri okuma
@@ -65,9 +65,9 @@ df.isnull().sum()             # Eksik değerleri toplayacağından değişkenler
 
 # Dataframe' in herhangi bir değişkenine erişmek için
 
-df["sex"].head()              # cinsiyet sütünunu gösterir.
+df["sex"].head()                                # cinsiyet sütünunu gösterir.
 
-df["sex"].value_counts()      # cinsiyet sayılarını verir.
+df["sex"].value_counts()                        # cinsiyet sayılarını verir.
 
 # Pandas seçim işlemleri
 
@@ -80,12 +80,12 @@ df[0:13]
 df.drop(0, axis=0)              # 0. satırı dataframe' den siler. Axis=0 ifadesi satırlar için kullanılır.
 
 
-# birden fazla satırı silmek için fancy index kullanılabilir.
+# Birden fazla satırı silmek için fancy index kullanılabilir.
 
 delete_indexes = [1, 3, 5, 7]
 
-df.drop(delete_indexes, axis=0)     # 1, 3, 5 ve 7 numaralı satırları dataframe' den atar. # ,inplace = True koyarak
-                                    # df' yi kaydedebiliriz.
+df.drop(delete_indexes, axis=0)     # 1, 3, 5 ve 7 numaralı satırları dataframe' den atar.
+                                    # ,inplace = True koyarak df' yi kaydedebiliriz.
 
 
 ## Değişkeni indekse çevirmek
@@ -162,7 +162,8 @@ df.loc[0:3]             # ilk 4 satırı seçer. 3 etiketini baz aldığından 3
 df.iloc[0:3, 0:3]       # 0' dan 3. satıra ve 0'dan 3. sütuna kadar alır. İnteger tabanlı olduğundan indexi integer olarak
                         # vermeliyiz aksi halde hata verir.
 
-col_names = ["age", "embraked", "alive"]
+col_names = ["age", "embark_town", "alive"]
+
 df.loc[0:3, col_names]              # 0' dan 3. satıra kadar(dahil) verilen değişkenleri alır.
 
 
@@ -178,7 +179,8 @@ df.loc[df["age"] > 50, ["age", "class"]].head()         # Birden fazla değişke
 
 df.loc[(df["age"] > 50) & (df["sex"] == "male"), ["age", "class"]].head()       #koşul sayısını artırmak istersek () kullanırız.
 
-df.loc[(df["age"] > 50) & (df["sex"] == "male") & ((df["embark_town"] == "Cherbourg") | (df["embark_town"] == "Southampton")), ["age", "class", "embark_town"]].head()
+df.loc[(df["age"] > 50) & (df["sex"] == "male") & ((df["embark_town"] == "Cherbourg") | (df["embark_town"] == "Southampton")),
+       ["age", "class", "embark_town"]].head()
 
 
 # Toplulaştırma ve Gruplama
@@ -223,7 +225,7 @@ df.groupby(["sex", "embark_town", "class"]).agg({
 
 df.pivot_table("survived", "sex", "embarked")           # ilk argüman kesişim için kullanılacak değişkeni, ikinci argüman
                                                         # satırda kullanılacak değişkeni, üçüncü argüman ise sütunda
-                                                        # kullanılacak değişkeni ifade eder. Kesişimde survived değişkeninin
+                                                        # kullanılacak de"""""""""""""""""""ğişkeni ifade eder. Kesişimde survived değişkeninin
                                                         # ortalaması görülür sebebi ise pivot_table fonksiyonunun ön
                                                         # tanımlı değerinin mean olmasıdır.
 
@@ -256,7 +258,7 @@ pd.set_option('display.width', 300)
 ##################
 # Apply ve Lambda
 ##################
-# Apply, satır ya da sütunlarda otomatik olarak fonksiyon çalıştırma imkanı sağlar. lambda ise kullanat formundaki tek
+# Apply, satır ya da sütunlarda otomatik olarak fonksiyon çalıştırma imkanı sağlar. lambda ise kullan-at formundaki tek
 # satırlık fonksiyon tanımlama işlemi için kullanılır.
 
 
