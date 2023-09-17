@@ -13,7 +13,6 @@ def new_salary(x):
 for salary in salaries:
     print(new_salary(salary))
 
-
 null_list = []
 
 for salary in salaries:
@@ -30,7 +29,7 @@ null_list
 
 [new_salary(salary * 2) if salary < 3000 else new_salary(salary) for salary in salaries]
 
-# [ fonksiyon yazılır ardından for döngüsü yazılır ardından tek if bloğu yazılır. Eğer eğer else kullanımı da varsa if,
+# Fonksiyon yazılır ardından for döngüsü yazılır ardından tek if bloğu yazılır. Eğer eğer else kullanımı da varsa if,
 # else solda for sağda yazılır.
 
 
@@ -46,18 +45,20 @@ null_list
 [new_salary(salary * 2) if salary < 3000 else new_salary(salary) for salary in salaries]
 
 
-students
+students = ["John", "Venessa", "Mariam", "Mark"]
 
 students_no = ["John", "Mark"]
 
 [student.lower() if student in students_no else student.upper() for student in students]
 
 
+
+
 ######################
 # Dict Comprehensions
 ######################
 
-# Sözlük comprehensions' lar tek bir satırda birden fazla formatı kullanmamıza ve birden fazla satır kullanma işlemini
+# Sözlük comprehensions' lar tek bir satırda birden fazla formatı kullanmamızı sağlar ve birden fazla satır kullanma işlemini
 # kolaylaştırırlar.
 
 dictionary = {"a": 1,
@@ -155,7 +156,6 @@ for col in num_columns:
 
 {col: agg_list for col in num_columns}
 new_dict = {col: agg_list for col in num_columns}
-
 
 
 
